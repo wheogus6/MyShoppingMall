@@ -2,10 +2,14 @@ package com.wheogus.MyShoppingMall.dto;
 
 import com.wheogus.MyShoppingMall.entity.Article;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
+@Setter
 public class Articleform {
 
     private Long id;
