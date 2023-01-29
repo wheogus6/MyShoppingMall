@@ -13,6 +13,7 @@ repositories {
 }
 
 dependencies {
+
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-mustache")
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -25,6 +26,8 @@ dependencies {
 	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
 	implementation("io.springfox:springfox-swagger-ui:2.9.2")
 
+	//mysql driver
+	runtimeOnly("com.mysql:mysql-connector-j")
 
 
 
