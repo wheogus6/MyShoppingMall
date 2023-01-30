@@ -1,21 +1,29 @@
 package com.wheogus.MyShoppingMall.dto;
 
 import com.wheogus.MyShoppingMall.entity.Product;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @ToString
+@Setter
 public class ProductDto {
     private Long product_no;
+    private Integer p_category_num;
     private String p_name;
-    private String p_category_num;
 
-    public Product toEntity() {
-        return new Product(product_no, p_name, p_category_num);
+    public static ProductDto createProductDto(Product newProduct) {
+        return new ProductDto(
+                newProduct.getProduct_no(),
+                newProduct.getP_category_num(),
+                newProduct.getP_name()
+        );
     }
+
+
+//    public Product toEntity() {
+//        return new Product(product_no, p_category_num, p_name);
+//    }
 }

@@ -24,8 +24,8 @@ public class CommentApiController {
     // 결과 응답
         return ResponseEntity.status(HttpStatus.OK).body(dtos);
     }
-    // 댓글 작성
 
+    // 댓글 작성
     @PostMapping("/api/articles/{articleId}/comments")
     public ResponseEntity<CommentDto> create(@PathVariable Long articleId, @RequestBody CommentDto dto) {
         // 서비스에게 위임
@@ -42,6 +42,7 @@ public class CommentApiController {
         // 결과 응답
         return ResponseEntity.status(HttpStatus.OK).body(updateDto);
     }
+
     // 댓글 삭제
     @DeleteMapping("/api/comments/{id}")
     public ResponseEntity<CommentDto> delete(@PathVariable Long id) {
