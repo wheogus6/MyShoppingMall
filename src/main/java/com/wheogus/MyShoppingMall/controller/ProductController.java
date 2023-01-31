@@ -2,7 +2,9 @@ package com.wheogus.MyShoppingMall.controller;
 
 import com.wheogus.MyShoppingMall.dto.ProductDto;
 import com.wheogus.MyShoppingMall.entity.Product;
+
 import com.wheogus.MyShoppingMall.service.ProductService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +17,7 @@ import java.util.List;
 @Slf4j
 @RestController
 public class ProductController {
+
 
     @Autowired
     private ProductService productService;
@@ -51,4 +54,5 @@ public class ProductController {
         ProductDto updateDto = productService.updateProduct(product_no, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updateDto);
     }
+
 }

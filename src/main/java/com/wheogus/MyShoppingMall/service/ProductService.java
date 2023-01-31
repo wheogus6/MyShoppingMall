@@ -53,7 +53,6 @@ public class ProductService {
         return ProductDto.createProductDto(updated);
     }
 
-
-
+    // 카테고리 별 상품리스트 조회
 
 }
