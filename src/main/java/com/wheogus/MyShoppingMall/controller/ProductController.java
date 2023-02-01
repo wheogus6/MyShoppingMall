@@ -55,4 +55,9 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(updateDto);
     }
 
+    @GetMapping("/shop/category/{p_category_num}")
+    public List<Product> categoryProduct(@PathVariable Integer p_category_num){
+        log.info("p_category_num = "  + p_category_num);
+        return productService.categoryProduct(p_category_num);
+    }
 }
