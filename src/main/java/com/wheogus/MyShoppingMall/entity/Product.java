@@ -19,6 +19,7 @@ public class Product {
     private Long product_no;
 
     @Column
+    @JoinColumn(name = "category")
     private Integer p_category_num;
 
     @Column

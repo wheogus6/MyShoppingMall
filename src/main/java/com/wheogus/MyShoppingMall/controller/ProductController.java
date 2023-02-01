@@ -54,10 +54,10 @@ public class ProductController {
         ProductDto updateDto = productService.updateProduct(product_no, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updateDto);
     }
-
-    @GetMapping("/shop/category/{p_category_num}")
-    public List<Product> categoryProduct(@PathVariable Integer p_category_num){
-        log.info("p_category_num = "  + p_category_num);
-        return productService.categoryProduct(p_category_num);
+    // 키테고리별 상품 조회
+    @GetMapping("/shop/category/{category}")
+    public List<Product> categoryProduct(@PathVariable Integer category){
+        log.info("p_category_num = "  + category);
+        return productService.categoryProduct(category);
     }
 }

@@ -53,8 +53,9 @@ public class ProductService {
         return ProductDto.createProductDto(updated);
     }
 
-    public List<Product> categoryProduct(Integer p_category_num) {
-        return productRepository.findByCategory(p_category_num);
+    public List<Product> categoryProduct(Integer category) {
+        log.info("p_category_num = " + category);
+        return productRepository.findByCategory(category);
     }
 
     // 카테고리 별 상품리스트 조회
