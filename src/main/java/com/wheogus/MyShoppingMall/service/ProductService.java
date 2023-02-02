@@ -54,9 +54,13 @@ public class ProductService {
     }
 
     public List<Product> categoryProduct(Integer category) {
-        log.info("p_category_num = " + category);
         return productRepository.findByCategory(category);
     }
+
+//    public Product category(Integer category) {
+//        log.info("p_category_num = " + category);
+//        return productRepository.categoryName(category);
+//    }
 
     // 카테고리 별 상품리스트 조회
 
