@@ -62,11 +62,5 @@ public class ProductController {
         return productService.categoryProduct(category);
     }
 
-    // 카테고리명 조회
-//    @GetMapping("/category/{category}")
-//    public Product category(@PathVariable Integer category) {
-//        log.info("p_category_num = "  + category);
-//        return productService.category(category);
-//    }
 
 }

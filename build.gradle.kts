@@ -32,6 +32,9 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
 
 
+// https://mvnrepository.com/artifact/com.google.api-client/google-api-client
+	implementation("com.google.api-client:google-api-client:2.0.0")
+
 	//mysql driver
 	runtimeOnly("com.mysql:mysql-connector-j")
 
