@@ -14,11 +14,11 @@ public class ProductDto {
     private Integer p_category_num;
     private String p_name;
 
-    public static ProductDto createProductDto(Product newProduct) {
+    public static ProductDto createProductDto(Product Product) {
         return new ProductDto(
-                newProduct.getProduct_no(),
-                newProduct.getP_category_num(),
-                newProduct.getP_name()
+                Product.getProduct_no(),
+                Product.getP_category_num(),
+                Product.getP_name()
         );
     }
 

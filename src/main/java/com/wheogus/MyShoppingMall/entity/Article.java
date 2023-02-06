@@ -1,7 +1,8 @@
 package com.wheogus.MyShoppingMall.entity;
 
-import jakarta.persistence.*;
 import lombok.*;
+
+import javax.persistence.*;
 
 //엔티티
 @Entity //DB가 해당 객체를 인식 가능! (해당 클래스로 테이블을 만든다)

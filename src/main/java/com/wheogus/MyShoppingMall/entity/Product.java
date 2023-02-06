@@ -1,11 +1,15 @@
 package com.wheogus.MyShoppingMall.entity;
 
 import com.wheogus.MyShoppingMall.dto.ProductDto;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 
 @Entity
 @Getter

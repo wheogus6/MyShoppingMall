@@ -1,11 +1,12 @@
 package com.wheogus.MyShoppingMall.entity;
 
 import com.wheogus.MyShoppingMall.dto.CommentDto;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import javax.persistence.*;
 
 @Entity
 @Getter

@@ -1,14 +1,17 @@
 package com.wheogus.MyShoppingMall.controller;
 
 import com.wheogus.MyShoppingMall.dto.ProductDto;
+import com.wheogus.MyShoppingMall.dto.ProductInfoDto;
 import com.wheogus.MyShoppingMall.entity.Product;
 
 import com.wheogus.MyShoppingMall.service.ProductService;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+//import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +24,8 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @Operation(summary = "product", description = "productApi")
 
     // 상품 전체 조회
     @GetMapping("/shop/product")
@@ -62,5 +67,8 @@ public class ProductController {
         return productService.categoryProduct(category);
     }
 
-
+    @GetMapping("/shop/productInfo/{product_no}")
+    public ResponseEntity<ProductInfoDto> productInfo(@PathVariable Long product_no) {
+        return null;
+    }
 }

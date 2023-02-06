@@ -1,6 +1,6 @@
 plugins {
 	java
-	id("org.springframework.boot") version "3.0.2"
+	id("org.springframework.boot") version "2.7.7"
 	id("io.spring.dependency-management") version "1.1.0"
 }
 
@@ -24,9 +24,13 @@ dependencies {
 
 	//swagger
 	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
-	implementation("io.springfox:springfox-swagger2:2.9.2")
-	implementation("io.springfox:springfox-swagger-ui:3.0.0")
+//	implementation("io.springfox:springfox-swagger2:2.9.2")
+//    implementation("io.springfox:springfox-swagger-ui:2.9.2")
 	implementation("io.springfox:springfox-boot-starter:3.0.0")
+//	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+	implementation("org.springframework.boot:spring-boot-starter-security:2.7.5")
+
 
 	//
 	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
