@@ -22,25 +22,32 @@ dependencies {
 	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
+	// https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
+	implementation("org.thymeleaf:thymeleaf:3.0.11.RELEASE")
+	// https://mvnrepository.com/artifact/com.mashape.unirest/unirest-java
+	implementation("com.mashape.unirest:unirest-java:1.4.9")
+
 	//swagger
 	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui
-//	implementation("io.springfox:springfox-swagger2:2.9.2")
-//    implementation("io.springfox:springfox-swagger-ui:2.9.2")
 	implementation("io.springfox:springfox-boot-starter:3.0.0")
-//	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
-// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
 	implementation("org.springframework.boot:spring-boot-starter-security:2.7.5")
 
+	// https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2
+	implementation("org.springframework.security.oauth:spring-security-oauth2:2.3.4.RELEASE")
 
-	//
-	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
-
-
-// https://mvnrepository.com/artifact/com.google.api-client/google-api-client
-	implementation("com.google.api-client:google-api-client:2.0.0")
+//	//oauth
+//	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+//	// https://mvnrepository.com/artifact/com.google.api-client/google-api-client
+//	implementation("com.google.api-client:google-api-client:2.0.0")
 
 	//mysql driver
 	runtimeOnly("com.mysql:mysql-connector-j")
+
+	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+	implementation("org.apache.commons:commons-lang3:3.12.0")
+
 
 
 

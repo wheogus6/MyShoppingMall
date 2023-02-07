@@ -1,48 +1,23 @@
 package com.wheogus.MyShoppingMall.config;
 
+//        // .authorizeRequests() → .authorizeHttpRequests()
+//        // .antMatchers() → .requestMatchers()
+//        // .access("hasAnyRole('ROLE_A','ROLE_B')") → .hasAnyRole("A", "B")
 
-import com.wheogus.MyShoppingMall.service.CustomOAuth2UserService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
-import org.springframework.boot.autoconfigure.security.ConditionalOnDefaultWebSecurity;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-@EnableWebSecurity
-@RequiredArgsConstructor
-@Configuration(proxyBeanMethods = false)
-@ConditionalOnDefaultWebSecurity
-@ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
-public class SecurityConfig {
-
-    private final CustomOAuth2UserService customOAuth2UserService;
-
-    @Bean
-    @Order(SecurityProperties.BASIC_AUTH_ORDER)
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception{
-        // .authorizeRequests() → .authorizeHttpRequests()
-        // .antMatchers() → .requestMatchers()
-        // .access("hasAnyRole('ROLE_A','ROLE_B')") → .hasAnyRole("A", "B")
-        httpSecurity.csrf().disable()
-                .authorizeHttpRequests()
-                .requestMatchers("/").permitAll()
-                .requestMatchers("login").permitAll()
-                .requestMatchers("user").hasRole("USER")
-                .anyRequest().authenticated()
+@EnableWebSecurity  // 웹보안 활성
+@Configuration
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable() // csrf 공격을 막기 위해 state 값 전달 받지 않음.
+                .formLogin() // 기본 제공하는 로그인 화면 사용
                 .and()
-                .exceptionHandling().accessDeniedPage("/accessDenied")
-                .and()
-                .logout().logoutUrl("/logout")
-                .logoutSuccessUrl("/").permitAll()
-                .and()
-                .oauth2Login().loginPage("/login")
-                .userInfoEndpoint()
-                .userService(customOAuth2UserService);
-        return httpSecurity.build();
+                .httpBasic();
+                // http 통신으로 basic auth를 사용 할 수 있다. (ex: Authorization: Basic bzFbdGfmZrptWY30YQ==)
     }
 }
