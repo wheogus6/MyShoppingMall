@@ -1,10 +1,14 @@
 package com.wheogus.MyShoppingMall.service;
 
 import com.wheogus.MyShoppingMall.dto.ProductDto;
+import com.wheogus.MyShoppingMall.dto.ProductInfoDto;
 import com.wheogus.MyShoppingMall.entity.Product;
+import com.wheogus.MyShoppingMall.entity.ProductInfo;
+import com.wheogus.MyShoppingMall.repository.ProductInfoRepository;
 import com.wheogus.MyShoppingMall.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,13 +20,16 @@ public class ProductService {
 
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private ProductInfoRepository productInfoRepository;
 
 
     // 상품 전체 조회
     public List<Product> showAll() {
         return productRepository.findAll();
     }
-    // 상품 상세 조회
+
+    // 상품 조회
     public Product show(Long product_no) {
         return productRepository.findById(product_no).orElse(null);
     }
@@ -37,11 +44,15 @@ public class ProductService {
         return ProductDto.createProductDto(newProduct);
     }
 
+
+
     // 상품 삭제
     public ProductDto productDelete(Long product_no) {
+//        productInfoRepository.deleteById(product_no);
         Product target = productRepository.findById(product_no).orElseThrow(() -> new IllegalArgumentException("해당 제품아 없습니다."));
 
         productRepository.delete(target);
+
         return ProductDto.createProductDto(target);
     }
 
@@ -53,12 +64,17 @@ public class ProductService {
         return ProductDto.createProductDto(updated);
     }
 
+    // 카테고리 별 상품리스트 조회
     public List<Product> categoryProduct(Integer category) {
         return productRepository.findByCategory(category);
     }
 
+    //상품 상세 조회
+    public ProductInfo showInfo(Long product_no) {
+        return productInfoRepository.findById(product_no).orElse(null);
+    }
 
 
-    // 카테고리 별 상품리스트 조회
+
 
 }

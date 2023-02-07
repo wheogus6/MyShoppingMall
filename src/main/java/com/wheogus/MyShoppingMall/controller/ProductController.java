@@ -1,13 +1,11 @@
 package com.wheogus.MyShoppingMall.controller;
 
 import com.wheogus.MyShoppingMall.dto.ProductDto;
-import com.wheogus.MyShoppingMall.dto.ProductInfoDto;
 import com.wheogus.MyShoppingMall.entity.Product;
 
+import com.wheogus.MyShoppingMall.entity.ProductInfo;
 import com.wheogus.MyShoppingMall.service.ProductService;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-//import io.swagger.v3.oas.annotations.Operation;
+
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +23,14 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @Operation(summary = "product", description = "productApi")
+
 
     // 상품 전체 조회
     @GetMapping("/shop/product")
     public List<Product> allProduct() {
         return productService.showAll();
     }
-    // 상품 상세 조회
+    // 상품 조회
     @GetMapping("/shop/product/{product_no}")
     public Product show(@PathVariable Long product_no) {
         return productService.show(product_no);
@@ -46,6 +44,7 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(productDto);
     }
 
+
     // 상품 삭제
     @DeleteMapping("/shop/product/{product_no}")
     public ResponseEntity<ProductDto> deleteProduct(@PathVariable Long product_no){
@@ -56,6 +55,8 @@ public class ProductController {
     // 상품 수정
     @PatchMapping("/shop/product/{product_no}")
     public ResponseEntity<ProductDto> updateProduct(@PathVariable Long product_no, @RequestBody ProductDto dto) {
+        log.info("product_no = " + product_no);
+        log.info("dto = "+ dto);
         ProductDto updateDto = productService.updateProduct(product_no, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updateDto);
     }
@@ -67,8 +68,10 @@ public class ProductController {
         return productService.categoryProduct(category);
     }
 
+    // 상품 상세 조회
     @GetMapping("/shop/productInfo/{product_no}")
-    public ResponseEntity<ProductInfoDto> productInfo(@PathVariable Long product_no) {
-        return null;
+    public ProductInfo productInfo(@PathVariable Long product_no) {
+        log.info("product_no = "+ product_no);
+        return productService.showInfo(product_no);
     }
 }
