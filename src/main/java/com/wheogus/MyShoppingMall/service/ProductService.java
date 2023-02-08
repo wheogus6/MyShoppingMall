@@ -38,7 +38,6 @@ public class ProductService {
     @Transactional
     public ProductDto newProduct(ProductDto dto) {
         Product product = Product.createProduct(dto);
-
         Product newProduct =  productRepository.save(product);
         log.info("newProduct = " + newProduct);
         return ProductDto.createProductDto(newProduct);
@@ -48,7 +47,7 @@ public class ProductService {
 
     // 상품 삭제
     public ProductDto productDelete(Long product_no) {
-//        productInfoRepository.deleteById(product_no);
+        productInfoRepository.deleteById(product_no);
         Product target = productRepository.findById(product_no).orElseThrow(() -> new IllegalArgumentException("해당 제품아 없습니다."));
 
         productRepository.delete(target);
@@ -75,6 +74,10 @@ public class ProductService {
     }
 
 
-
-
+    @Transactional
+    public ProductInfoDto newProductInfo(ProductInfoDto dto) {
+        ProductInfo Info = ProductInfo.createInfo(dto);
+        ProductInfo newInfo =  productInfoRepository.save(Info);
+        return ProductInfoDto.createInfoDto(newInfo);
+    }
 }

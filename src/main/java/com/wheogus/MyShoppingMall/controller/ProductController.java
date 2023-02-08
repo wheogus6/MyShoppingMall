@@ -1,6 +1,7 @@
 package com.wheogus.MyShoppingMall.controller;
 
 import com.wheogus.MyShoppingMall.dto.ProductDto;
+import com.wheogus.MyShoppingMall.dto.ProductInfoDto;
 import com.wheogus.MyShoppingMall.entity.Product;
 
 import com.wheogus.MyShoppingMall.entity.ProductInfo;
@@ -73,5 +74,12 @@ public class ProductController {
     public ProductInfo productInfo(@PathVariable Long product_no) {
         log.info("product_no = "+ product_no);
         return productService.showInfo(product_no);
+    }
+
+    // 상품 상세 등록
+    @PostMapping("/shop/productInfo")
+    public ResponseEntity<ProductInfoDto> newInfo(@RequestBody ProductInfoDto dto) {
+        ProductInfoDto productInfoDto = productService.newProductInfo(dto);
+        return ResponseEntity.status(HttpStatus.OK).body(productInfoDto);
     }
 }
