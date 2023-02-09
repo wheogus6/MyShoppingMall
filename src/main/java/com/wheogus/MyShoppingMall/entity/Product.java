@@ -28,13 +28,17 @@ public class Product {
     @Column
     private String p_name;
 
+    @Column
+    private String price;
+
 
     public static Product createProduct(ProductDto dto) {
         // 엔티티 생성 및 반환
         return new Product(
             dto.getProduct_no(),
                 dto.getP_category_num(),
-                dto.getP_name()
+                dto.getP_name(),
+                dto.getPrice()
         );
     }
 
@@ -48,5 +52,7 @@ public class Product {
             this.p_category_num = dto.getP_category_num();
         if (dto.getP_name() != null)
             this.p_name = dto.getP_name();
+        if (dto.getPrice() != null)
+            this.price = dto.getPrice();
     }
 }

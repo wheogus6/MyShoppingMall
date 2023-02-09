@@ -13,12 +13,15 @@ public class ProductDto {
     private Long product_no;
     private Integer p_category_num;
     private String p_name;
+    private String price;
 
-    public static ProductDto createProductDto(Product Product) {
+    public static ProductDto createProductDto(Product product) {
         return new ProductDto(
-                Product.getProduct_no(),
-                Product.getP_category_num(),
-                Product.getP_name()
+                product.getProduct_no(),
+                product.getP_category_num(),
+                product.getP_name(),
+                product.getPrice()
+
         );
     }
 
