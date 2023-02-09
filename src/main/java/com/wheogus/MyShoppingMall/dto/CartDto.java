@@ -11,7 +11,7 @@ import lombok.*;
 @Setter
 public class CartDto {
     private Long id;
-    private String product_num;
+    private Integer product_no;
     private Integer product_cnt;
     private String price;
 
@@ -20,7 +20,7 @@ public class CartDto {
     public static CartDto createCart(Cart cart) {
         return new CartDto(
                 cart.getId(),
-                cart.getProduct_num(),
+                cart.getProduct_no(),
                 cart.getProduct_cnt(),
                 cart.getPrice()
         );

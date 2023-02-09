@@ -28,9 +28,11 @@ public class CartService {
 
 
     public CartDto insert(CartDto dto) {
-        Integer product_no = Integer.valueOf(dto.getProduct_num());
-        Optional<Product> product = productRepository.findById(Long.valueOf(product_no));
-        log.info("product = "+ product);
-        return null;
+//        Integer product_no = Integer.valueOf(dto.getProduct_num());
+//        Optional<Product> product = productRepository.findById(Long.valueOf(product_no));
+//        log.info("product = "+ product);
+        Cart cart = Cart.createCart(dto);
+        Cart insertProduct = cartRepository.save(cart);
+        return CartDto.createCart(insertProduct);
     }
 }

@@ -21,7 +21,7 @@ public class Cart {
         @Id
         private Long id;
         @Column
-        private String product_num;
+        private Integer product_no;
         @Column
         private Integer product_cnt;
         @Column
@@ -33,7 +33,7 @@ public class Cart {
     public static Cart createCart(CartDto dto) {
         return new Cart(
                 dto.getId(),
-                dto.getProduct_num(),
+                dto.getProduct_no(),
                 dto.getProduct_cnt(),
                 dto.getPrice()
         );
