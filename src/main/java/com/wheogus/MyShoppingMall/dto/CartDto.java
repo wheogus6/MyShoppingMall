@@ -10,7 +10,7 @@ import lombok.*;
 @ToString
 @Setter
 public class CartDto {
-    private Long id;
+    private String id;
     private Integer product_no;
     private Integer product_cnt;
     private String price;

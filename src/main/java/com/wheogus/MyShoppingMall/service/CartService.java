@@ -22,7 +22,7 @@ public class CartService {
     private ProductRepository productRepository;
 
 
-    public Optional<Cart> showCart(Long id) {
+    public Optional<Cart> showCart(String id) {
         return cartRepository.findById(id);
     }
 

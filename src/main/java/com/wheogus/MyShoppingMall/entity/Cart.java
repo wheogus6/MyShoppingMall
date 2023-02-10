@@ -19,7 +19,7 @@ import javax.persistence.Id;
 public class Cart {
 
         @Id
-        private Long id;
+        private String id;
         @Column
         private Integer product_no;
         @Column

@@ -6,6 +6,7 @@ import com.wheogus.MyShoppingMall.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -18,7 +19,7 @@ public class CartController {
 
     // 카트 조회
     @GetMapping("/cart/{id}")
-    public Optional<Cart> showCart(@PathVariable Long id) {
+    public Optional<Cart> showCart(@PathVariable String id) {
         return cartService.showCart(id);
     }
 
@@ -27,6 +28,11 @@ public class CartController {
     public ResponseEntity<CartDto> insertCart(@RequestBody CartDto dto) {
         CartDto cartDto = cartService.insert(dto);
         return ResponseEntity.status(HttpStatus.OK).body(cartDto);
+    }
 
+    // 수량 변경
+    @PatchMapping("/cart/{id}")
+    public CartDto patchCart(@PathVariable String id, @RequestBody CartDto cto) {
+        return null;
     }
 }
