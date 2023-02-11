@@ -1,38 +1,34 @@
 package com.wheogus.MyShoppingMall.controller;
 
-import com.wheogus.MyShoppingMall.dto.CartDto;
 import com.wheogus.MyShoppingMall.entity.Cart;
-import com.wheogus.MyShoppingMall.service.CartService;
+import com.wheogus.MyShoppingMall.entity.Product;
+import com.wheogus.MyShoppingMall.entity.User;
+import com.wheogus.MyShoppingMall.repository.CartRepository;
+import com.wheogus.MyShoppingMall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
+
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 public class CartController {
 
     @Autowired
-    private CartService cartService;
+    private CartRepository cartRepository;
+
 
     // 카트 조회
-    @GetMapping("/cart/{id}")
-    public Optional<Cart> showCart(@PathVariable String id) {
-        return cartService.showCart(id);
-    }
+//    @GetMapping("/cart/{id}")
+//    public Optional<Cart> showCart(@PathVariable String id) {
+//        return cartService.showCart(id);
+//    }
 
     // 카트 담기
-    @PostMapping("/cart")
-    public ResponseEntity<CartDto> insertCart(@RequestBody CartDto dto) {
-        CartDto cartDto = cartService.insert(dto);
-        return ResponseEntity.status(HttpStatus.OK).body(cartDto);
-    }
+//    @PostMapping("/cart/products/{product_no}")
+//    public List<Product> pushCart(@PathVariable("product_no") Long product_no) {
+//        int userID =
+//    }
 
-    // 수량 변경
-    @PatchMapping("/cart/{id}")
-    public CartDto patchCart(@PathVariable String id, @RequestBody CartDto cto) {
-        return null;
-    }
 }

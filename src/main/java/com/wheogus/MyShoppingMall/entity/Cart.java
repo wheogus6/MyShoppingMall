@@ -1,42 +1,51 @@
 package com.wheogus.MyShoppingMall.entity;
 
-import com.wheogus.MyShoppingMall.dto.CartDto;
-import com.wheogus.MyShoppingMall.dto.ProductInfoDto;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
-@ToString
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "cart")
 public class Cart {
 
         @Id
-        private String id;
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Integer cart_id;
+
+        @Column
+        private String user_id;
+
         @Column
         private Integer product_no;
-        @Column
-        private Integer product_cnt;
-        @Column
-        private String price;
+
+//        @Column
+//        private String price;
+//        @Column
+//        private Integer product_no;
+
+//    public static Cart createCart(User user) {
+//        Cart cart = new Cart();
+//        cart.setProduct_cnt(0);
+//        cart.setUser(user);
+//        return cart;
+//    }
 
 
 
-
-    public static Cart createCart(CartDto dto) {
-        return new Cart(
-                dto.getId(),
-                dto.getProduct_no(),
-                dto.getProduct_cnt(),
-                dto.getPrice()
-        );
-    }
+//    public static Cart createCart(CartDto dto) {
+//        return new Cart(
+//                dto.getCart_id(),
+//                dto.getId(),
+//                dto.getProduct_no(),
+//                dto.getProduct_cnt(),
+//                dto.getPrice()
+//        );
+//    }
 
 }

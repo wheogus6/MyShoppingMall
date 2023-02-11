@@ -19,11 +19,14 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	//롬복 추가
 	implementation("org.projectlombok:lombok:1.18.22")
-	runtimeOnly("com.h2database:h2")
+//	runtimeOnly("com.h2database:h2")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 
 	// https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
 	implementation("org.thymeleaf:thymeleaf:3.0.11.RELEASE")
+	// https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5
+	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE")
+
 	// https://mvnrepository.com/artifact/com.mashape.unirest/unirest-java
 	implementation("com.mashape.unirest:unirest-java:1.4.9")
 
@@ -41,6 +44,9 @@ dependencies {
 //	implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
 //	// https://mvnrepository.com/artifact/com.google.api-client/google-api-client
 //	implementation("com.google.api-client:google-api-client:2.0.0")
+
+	// https://mvnrepository.com/artifact/com.konghq/unirest-java
+	implementation("com.konghq:unirest-java:3.13.6")
 
 	//mysql driver
 	runtimeOnly("com.mysql:mysql-connector-j")
