@@ -15,7 +15,7 @@ import javax.persistence.Id;
 public class ProductInfo {
 
         @Id
-        private Long product_no;
+        private Long productNo;
         @Column
         private String p_img;
         @Column
@@ -28,7 +28,7 @@ public class ProductInfo {
 
     public static ProductInfo createInfo(ProductInfoDto dto) {
         return new ProductInfo(
-                dto.getProduct_no(),
+                dto.getProductNo(),
                 dto.getP_img(),
                 dto.getP_detail(),
                 dto.getP_stock(),

@@ -17,7 +17,7 @@ import javax.persistence.JoinColumn;
 public class Product {
 
     @Id
-    private Long product_no;
+    private Long productNo;
 
     @Column
     @JoinColumn(name = "category")
@@ -33,7 +33,7 @@ public class Product {
     public static Product createProduct(ProductDto dto) {
         // 엔티티 생성 및 반환
         return new Product(
-            dto.getProduct_no(),
+            dto.getProductNo(),
                 dto.getP_category_num(),
                 dto.getP_name(),
                 dto.getPrice()
@@ -41,11 +41,11 @@ public class Product {
     }
 
     public void patch(ProductDto dto) {
-        if(this.product_no != dto.getProduct_no())
+        if(this.productNo != dto.getProductNo())
             throw new IllegalArgumentException("수정 실패! 다른 제품입니다.");
 
-        if(dto.getProduct_no() != null)
-            this.product_no = dto.getProduct_no();
+        if(dto.getProductNo() != null)
+            this.productNo = dto.getProductNo();
         if(dto.getP_category_num() != null)
             this.p_category_num = dto.getP_category_num();
         if (dto.getP_name() != null)

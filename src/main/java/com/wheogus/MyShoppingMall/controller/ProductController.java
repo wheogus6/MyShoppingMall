@@ -32,9 +32,9 @@ public class ProductController {
         return productService.showAll();
     }
     // 상품 조회
-    @GetMapping("/shop/product/{product_no}")
-    public Product show(@PathVariable Long product_no) {
-        return productService.show(product_no);
+    @GetMapping("/shop/product/{productNo}")
+    public Product show(@PathVariable Long productNo) {
+        return productService.show(productNo);
     }
 
     // 상품 등록
@@ -47,18 +47,18 @@ public class ProductController {
 
 
     // 상품 삭제
-    @DeleteMapping("/shop/product/{product_no}")
-    public ResponseEntity<ProductDto> deleteProduct(@PathVariable Long product_no){
-        ProductDto delete = productService.productDelete(product_no);
+    @DeleteMapping("/shop/product/{productNo}")
+    public ResponseEntity<ProductDto> deleteProduct(@PathVariable Long productNo){
+        ProductDto delete = productService.productDelete(productNo);
         return ResponseEntity.status(HttpStatus.OK).body(delete);
     }
 
     // 상품 수정
-    @PatchMapping("/shop/product/{product_no}")
-    public ResponseEntity<ProductDto> updateProduct(@PathVariable Long product_no, @RequestBody ProductDto dto) {
-        log.info("product_no = " + product_no);
+    @PatchMapping("/shop/product/{productNo}")
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable Long productNo, @RequestBody ProductDto dto) {
+        log.info("productNo = " + productNo);
         log.info("dto = "+ dto);
-        ProductDto updateDto = productService.updateProduct(product_no, dto);
+        ProductDto updateDto = productService.updateProduct(productNo, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updateDto);
     }
 
@@ -70,10 +70,10 @@ public class ProductController {
     }
 
     // 상품 상세 조회
-    @GetMapping("/shop/productInfo/{product_no}")
-    public ProductInfo productInfo(@PathVariable Long product_no) {
-        log.info("product_no = "+ product_no);
-        return productService.showInfo(product_no);
+    @GetMapping("/shop/productInfo/{productNo}")
+    public ProductInfo productInfo(@PathVariable Long productNo) {
+        log.info("productNo = "+ productNo);
+        return productService.showInfo(productNo);
     }
 
     // 상품 상세 등록

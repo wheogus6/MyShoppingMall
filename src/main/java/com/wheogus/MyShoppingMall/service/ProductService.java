@@ -30,8 +30,8 @@ public class ProductService {
     }
 
     // 상품 조회
-    public Product show(Long product_no) {
-        return productRepository.findById(product_no).orElse(null);
+    public Product show(Long productNo) {
+        return productRepository.findById(productNo).orElse(null);
     }
 
     // 상품 등록
@@ -46,9 +46,9 @@ public class ProductService {
 
 
     // 상품 삭제
-    public ProductDto productDelete(Long product_no) {
-        productInfoRepository.deleteById(product_no);
-        Product target = productRepository.findById(product_no).orElseThrow(() -> new IllegalArgumentException("해당 제품아 없습니다."));
+    public ProductDto productDelete(Long productNo) {
+        productInfoRepository.deleteById(productNo);
+        Product target = productRepository.findById(productNo).orElseThrow(() -> new IllegalArgumentException("해당 제품아 없습니다."));
 
         productRepository.delete(target);
 
@@ -56,8 +56,8 @@ public class ProductService {
     }
 
     // 상품 수정
-    public ProductDto updateProduct(Long product_no, ProductDto dto) {
-        Product target = productRepository.findById(product_no).orElseThrow(() -> new IllegalArgumentException("상품 수정 불가! 해당 상품은 없습니다."));
+    public ProductDto updateProduct(Long productNo, ProductDto dto) {
+        Product target = productRepository.findById(productNo).orElseThrow(() -> new IllegalArgumentException("상품 수정 불가! 해당 상품은 없습니다."));
         target.patch(dto);
         Product updated = productRepository.save(target);
         return ProductDto.createProductDto(updated);
@@ -69,8 +69,8 @@ public class ProductService {
     }
 
     //상품 상세 조회
-    public ProductInfo showInfo(Long product_no) {
-        return productInfoRepository.findById(product_no).orElse(null);
+    public ProductInfo showInfo(Long productNo) {
+        return productInfoRepository.findById(productNo).orElse(null);
     }
 
 

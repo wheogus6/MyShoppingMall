@@ -18,34 +18,10 @@ public class Cart {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer cart_id;
 
-        @Column
-        private Integer user_id;
+        @JoinColumn(name = "userId")
+        private Integer userId;
 
         @Column
-        private Integer product_no;
-
-//        @Column
-//        private String price;
-//        @Column
-//        private Integer product_no;
-
-//    public static Cart createCart(User user) {
-//        Cart cart = new Cart();
-//        cart.setProduct_cnt(0);
-//        cart.setUser(user);
-//        return cart;
-//    }
-
-
-
-//    public static Cart createCart(CartDto dto) {
-//        return new Cart(
-//                dto.getCart_id(),
-//                dto.getId(),
-//                dto.getProduct_no(),
-//                dto.getProduct_cnt(),
-//                dto.getPrice()
-//        );
-//    }
+        private Long productNo;
 
 }

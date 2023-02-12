@@ -9,7 +9,7 @@ import lombok.*;
 @ToString
 @Setter
 public class ProductInfoDto {
-    private Long product_no;
+    private Long productNo;
     private String p_img;
     private String p_detail;
     private Integer p_stock;
@@ -18,7 +18,7 @@ public class ProductInfoDto {
 
     public static ProductInfoDto createInfoDto(ProductInfo productInfo) {
         return new ProductInfoDto(
-            productInfo.getProduct_no(),
+            productInfo.getProductNo(),
                 productInfo.getP_img(),
                 productInfo.getP_detail(),
                 productInfo.getP_stock(),

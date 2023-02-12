@@ -10,14 +10,14 @@ import lombok.*;
 @ToString
 @Setter
 public class ProductDto {
-    private Long product_no;
+    private Long productNo;
     private Integer p_category_num;
     private String p_name;
     private String price;
 
     public static ProductDto createProductDto(Product product) {
         return new ProductDto(
-                product.getProduct_no(),
+                product.getProductNo(),
                 product.getP_category_num(),
                 product.getP_name(),
                 product.getPrice()
@@ -26,7 +26,5 @@ public class ProductDto {
     }
 
 
-//    public Product toEntity() {
-//        return new Product(product_no, p_category_num, p_name);
-//    }
+
 }
