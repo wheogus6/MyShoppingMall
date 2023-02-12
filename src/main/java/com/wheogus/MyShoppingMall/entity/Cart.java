@@ -1,10 +1,10 @@
 package com.wheogus.MyShoppingMall.entity;
 
+import io.swagger.models.auth.In;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @Getter
@@ -19,7 +19,7 @@ public class Cart {
         private Integer cart_id;
 
         @Column
-        private String user_id;
+        private Integer user_id;
 
         @Column
         private Integer product_no;
