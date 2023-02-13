@@ -19,8 +19,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	//롬복 추가
 	implementation("org.projectlombok:lombok:1.18.22")
-//	runtimeOnly("com.h2database:h2")
-	testImplementation("org.springframework.boot:spring-boot-starter-test")
+
 
 	// https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf
 	implementation("org.thymeleaf:thymeleaf:3.0.11.RELEASE")
@@ -48,8 +47,8 @@ dependencies {
 	// https://mvnrepository.com/artifact/com.konghq/unirest-java
 	implementation("com.konghq:unirest-java:3.13.6")
 
-	//mysql driver
-	runtimeOnly("com.mysql:mysql-connector-j")
+	// https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
+	implementation("com.mysql:mysql-connector-j")
 
 	// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
 	implementation("org.apache.commons:commons-lang3:3.12.0")
