@@ -58,6 +58,15 @@ public class AccountController {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
+    @PostMapping("/shop/account/logout")
+    public ResponseEntity logout(HttpServletResponse res) {
+        Cookie cookie = new Cookie("token", null);
+        cookie.setPath("/");
+        cookie.setMaxAge(0);
+        res.addCookie(cookie);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 //    @PostMapping("/shop/account/login")
 //    public ResponseEntity login(@PathVariable String email, @PathVariable String pwd, HttpServletResponse res) {
 //        Member member = memberRepository.findByEmailAndPwd(email, pwd);
