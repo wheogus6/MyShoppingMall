@@ -1,10 +1,12 @@
 package com.wheogus.MyShoppingMall.controller;
 
+import com.wheogus.MyShoppingMall.dto.MemberDto;
 import com.wheogus.MyShoppingMall.entity.Member;
 import com.wheogus.MyShoppingMall.repository.MemberRepository;
 import com.wheogus.MyShoppingMall.service.JwtService;
 import com.wheogus.MyShoppingMall.service.JwtServiceImpl;
 import io.jsonwebtoken.Claims;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
+@Slf4j
 @RestController
 public class AccountController {
 
@@ -23,27 +26,35 @@ public class AccountController {
     @Autowired
     private MemberRepository memberRepository;
 
+
+//    //로그인
 //    @PostMapping("/shop/account/login")
-//    public int login(@RequestBody Map<String, String> params) {
+//    public ResponseEntity login(@RequestBody Map<String, String> params, HttpServletResponse res) {
 //        Member member = memberRepository.findByEmailAndPwd(params.get("email"), params.get("pwd"));
 //        if (member != null) {
-//        return member.getId();
+//            int id = member.getId();
+//            String token = jwtService.getToken("id", id);
+//            Cookie cookie = new Cookie("token", token);
+//            cookie.setHttpOnly(true);
+//            cookie.setPath("/");
+//
+//            res.addCookie(cookie);
+//            return ResponseEntity.ok().build();
+//
 //        }
 //        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 //    }
-
-//    @PostMapping("/shop/account/login/{email}/{pwd}")
-//    public int login(@PathVariable String email, @PathVariable String pwd) {
-//        Member member = memberRepository.findByEmailAndPwd(email, pwd);
-//        if (member != null) {
-//            return member.getId();
-//        }
-//        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-//    }
-
+    //로그인
     @PostMapping("/shop/account/login")
-    public ResponseEntity login(@RequestBody Map<String, String> params, HttpServletResponse res) {
-        Member member = memberRepository.findByEmailAndPwd(params.get("email"), params.get("pwd"));
+    public ResponseEntity login(@RequestBody MemberDto dto, HttpServletResponse res) {
+        String email = dto.getEmail();
+        String pwd = dto.getPwd();
+        log.info("email = " + email);
+        log.info("pwd = " + pwd);
+        Member member = memberRepository.findByEmailAndPwd(email, pwd);
+        log.info("member = " + member);
+
+
         if (member != null) {
             int id = member.getId();
             String token = jwtService.getToken("id", id);
@@ -58,6 +69,7 @@ public class AccountController {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
+    //로그아웃
     @PostMapping("/shop/account/logout")
     public ResponseEntity logout(HttpServletResponse res) {
         Cookie cookie = new Cookie("token", null);
@@ -67,23 +79,6 @@ public class AccountController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-//    @PostMapping("/shop/account/login")
-//    public ResponseEntity login(@PathVariable String email, @PathVariable String pwd, HttpServletResponse res) {
-//        Member member = memberRepository.findByEmailAndPwd(email, pwd);
-//        if (member != null) {
-//            JwtService jwtService = new JwtServiceImpl();
-//            int id = member.getId();
-//            String token = jwtService.getToken("id", id);
-//            Cookie cookie = new Cookie("token", token);
-//            cookie.setHttpOnly(true);
-//            cookie.setPath("/");
-//
-//            res.addCookie(cookie);
-//            return ResponseEntity.ok().build();
-//
-//        }
-//        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-//    }
 
     @GetMapping("/shop/account/check")
     public ResponseEntity check(@CookieValue(value = "token", required = false) String token) {
