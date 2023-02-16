@@ -39,13 +39,13 @@ public class OauthToken {
         }
 
         @Data
-        public static class refrashToken{
+        public static class refreshToken{
             private String refreshToken;
             private String grant_type;
 
             public Map getMapData() {
                 Map map = new HashMap();
-                map.put("refrash_token", refreshToken);
+                map.put("refresh_token", refreshToken);
                 map.put("grant_type", grant_type);
                 return map;
             }

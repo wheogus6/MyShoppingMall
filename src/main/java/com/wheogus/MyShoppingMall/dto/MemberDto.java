@@ -1,8 +1,12 @@
 package com.wheogus.MyShoppingMall.dto;
 
-import lombok.Getter;
+import lombok.*;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@ToString
+@Setter
 public class MemberDto {
 
     private String email;

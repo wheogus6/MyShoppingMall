@@ -33,11 +33,6 @@ public class CartController {
     private ProductRepository productRepository;
 
     // 카트 조회
-//    @GetMapping("/cart/{id}")
-//    public Optional<Cart> showCart(@PathVariable String id) {
-//        return cartService.showCart(id);
-//    }
-
     @GetMapping("/cart/product/")
     public ResponseEntity getCart(@CookieValue(value = "token", required = false) String token) {
         if (jwtService.isValid(token)) {
@@ -57,13 +52,14 @@ public class CartController {
 
 //     카트 담기
     @PostMapping("/cart/product/{productNo}")
-    public ResponseEntity pushCart(@PathVariable("productNo") Long productNo, @CookieValue(value = "token", required = false)String token) {
+    public ResponseEntity pushCart(@PathVariable Long productNo, @CookieValue(value = "token", required = false) String token) {
         if (jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
         int userId = jwtService.getId(token);
-       Cart cart = cartRepository.findByUserIdAndProductNo(userId, productNo);
         log.info("userId = " + userId);
+       Cart cart = cartRepository.findByUserIdAndProductNo(userId, productNo);
+//        log.info("cart = " + cart);
 
         if (cart == null) {
             Cart newCart = new Cart();
@@ -74,6 +70,7 @@ public class CartController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    // 카트 품목 삭제
     @DeleteMapping("/cart/product/{productNo}")
     public ResponseEntity removeCart(@PathVariable("productNo") Long productNo, @CookieValue(value = "token", required = false) String token) {
         if (jwtService.isValid(token)) {

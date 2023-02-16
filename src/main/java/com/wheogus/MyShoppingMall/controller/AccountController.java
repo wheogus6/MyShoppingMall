@@ -27,23 +27,6 @@ public class AccountController {
     private MemberRepository memberRepository;
 
 
-//    //로그인
-//    @PostMapping("/shop/account/login")
-//    public ResponseEntity login(@RequestBody Map<String, String> params, HttpServletResponse res) {
-//        Member member = memberRepository.findByEmailAndPwd(params.get("email"), params.get("pwd"));
-//        if (member != null) {
-//            int id = member.getId();
-//            String token = jwtService.getToken("id", id);
-//            Cookie cookie = new Cookie("token", token);
-//            cookie.setHttpOnly(true);
-//            cookie.setPath("/");
-//
-//            res.addCookie(cookie);
-//            return ResponseEntity.ok().build();
-//
-//        }
-//        throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-//    }
     //로그인
     @PostMapping("/shop/account/login")
     public ResponseEntity login(@RequestBody MemberDto dto, HttpServletResponse res) {
@@ -51,6 +34,7 @@ public class AccountController {
         String pwd = dto.getPwd();
         log.info("email = " + email);
         log.info("pwd = " + pwd);
+
         Member member = memberRepository.findByEmailAndPwd(email, pwd);
         log.info("member = " + member);
 
@@ -58,7 +42,11 @@ public class AccountController {
         if (member != null) {
             int id = member.getId();
             String token = jwtService.getToken("id", id);
+            log.info("token = " + token);
+
             Cookie cookie = new Cookie("token", token);
+            log.info("cookie = "+ cookie );
+
             cookie.setHttpOnly(true);
             cookie.setPath("/");
 
@@ -79,11 +67,12 @@ public class AccountController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
+    // 로그인 체크
     @GetMapping("/shop/account/check")
     public ResponseEntity check(@CookieValue(value = "token", required = false) String token) {
         Claims claims = jwtService.getClaims(token);
 
+        log.info("claims = "+ claims);
         if (claims != null) {
             int id = Integer.parseInt(claims.get("id").toString());
             return new ResponseEntity<>(id, HttpStatus.OK);
