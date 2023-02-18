@@ -2,25 +2,20 @@ package com.wheogus.MyShoppingMall.controller;
 
 import com.wheogus.MyShoppingMall.entity.Cart;
 import com.wheogus.MyShoppingMall.entity.Product;
-import com.wheogus.MyShoppingMall.entity.User;
 import com.wheogus.MyShoppingMall.repository.CartRepository;
 import com.wheogus.MyShoppingMall.repository.ProductRepository;
 import com.wheogus.MyShoppingMall.service.JwtService;
-import com.wheogus.MyShoppingMall.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
-import java.util.Optional;
-
-@RestController
 @Slf4j
+@RestController
 public class CartController {
 
     @Autowired
@@ -33,27 +28,31 @@ public class CartController {
     private ProductRepository productRepository;
 
     // 카트 조회
-    @GetMapping("/cart/product/")
+    @GetMapping("/shop/cart/")
     public ResponseEntity getCart(@CookieValue(value = "token", required = false) String token) {
-        if (jwtService.isValid(token)) {
+        if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
         int userId = jwtService.getId(token);
+        log.info("userId = " + userId);
         List<Cart> carts = cartRepository.findByUserId(userId);
 
         // **카트의 제품번호만 추출**
-        List<Long> ids = carts.stream().map(Cart::getProductNo).toList();
-        List<Product> products = productRepository.findByProductNoIn(ids);
+        List<Long> productNos = carts.stream().map(Cart::getProductNo).toList();
+        List<Product> products = productRepository.findByProductNoIn(productNos);
 
         return new ResponseEntity<>(products, HttpStatus.OK);
 
     }
 
 
+
+
+
 //     카트 담기
-    @PostMapping("/cart/product/{productNo}")
+    @PostMapping("/shop/cart/{productNo}")
     public ResponseEntity pushCart(@PathVariable Long productNo, @CookieValue(value = "token", required = false) String token) {
-        if (jwtService.isValid(token)) {
+        if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
         int userId = jwtService.getId(token);
@@ -71,9 +70,9 @@ public class CartController {
     }
 
     // 카트 품목 삭제
-    @DeleteMapping("/cart/product/{productNo}")
+    @DeleteMapping("/shop/cart/{productNo}")
     public ResponseEntity removeCart(@PathVariable("productNo") Long productNo, @CookieValue(value = "token", required = false) String token) {
-        if (jwtService.isValid(token)) {
+        if (!jwtService.isValid(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
         int userId = jwtService.getId(token);

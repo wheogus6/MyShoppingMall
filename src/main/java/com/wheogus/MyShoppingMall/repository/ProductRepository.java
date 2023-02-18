@@ -12,5 +12,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "select * from product where p_category_num = :category", nativeQuery = true)
     List<Product> findByCategory(@Param("category") Integer category);
 
-    List<Product> findByProductNoIn(List<Long> ids);
+    List<Product> findByProductNoIn(List<Long> productNos);
 }
