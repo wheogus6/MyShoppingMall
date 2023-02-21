@@ -21,7 +21,6 @@ public class ProductDto {
                 product.getP_category_num(),
                 product.getP_name(),
                 product.getPrice()
-
         );
     }
 
