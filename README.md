@@ -1,6 +1,6 @@
 # MyShoppingMall
 
-AWS 배포한 Swagger API 문서 주소
+Swagger API 문서 주소 (AWS 이용)
 <br>
 http://52.79.188.161:8080/swagger-ui/index.html?continue#/
 
