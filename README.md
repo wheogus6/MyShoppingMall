@@ -2,7 +2,7 @@
 
 Swagger API 문서 주소 (AWS 이용)
 <br>
-http://52.79.188.161:8081/swagger-ui/index.html?continue#/
+http://52.79.188.161:8080/swagger-ui/index.html?continue#/
 
 Java & springboot를 활용하여 소규모 쇼핑몰 restAPI 구현
 <br>
